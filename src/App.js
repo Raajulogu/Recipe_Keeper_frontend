@@ -1,23 +1,89 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Dashboard from './Components/Dashboard';
+import Signup from './Components/Signup';
+import Login from './Components/Login';
+import MyRecipe from './Components/MyRecipe';
+import Favourites from './Components/Favourites';
+import AddRecipe from './Components/AddRecipe';
+import Recipe from './Components/Recipe';
+import { useState } from 'react';
+import EditRecipe from './Components/EditRecipe';
+import Forgot from './Components/forgot';
+import Reset from './Components/reset';
+import Otp from './Components/Otp';
 
 function App() {
+
+  let [data, setData] = useState([]);
+  let [ind,setInd]=useState(0);
+  let [recipes,setRecipes] = useState([]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route exact path="/"
+          element={<Dashboard
+          data={data}
+          setData={setData}
+          ind={ind}
+          setInd={setInd}
+          recipes={recipes}
+          setRecipes={setRecipes}
+          />}
+        />
+        <Route path="/signup"
+          element={<Signup/>}
+        />
+        <Route path="/login"
+          element={<Login/>}
+        />
+        <Route path="/reset"
+          element={<Reset/>}
+        />
+        <Route path="/forgot"
+          element={<Forgot/>}
+        />
+        <Route path="/otp"
+          element={<Otp/>}
+        />
+        <Route path="/my-recipe"
+          element={<MyRecipe
+            data={data}
+            setData={setData}
+            ind={ind}
+            setInd={setInd}
+          />}
+        />
+        <Route path="/favourites"
+          element={<Favourites
+            data={data}
+            setData={setData}
+            ind={ind}
+            setInd={setInd}
+            recipes={recipes}
+            setRecipes={setRecipes}
+          />}
+        />
+        <Route path="/addrecipe"
+          element={<AddRecipe/>}
+        />
+        <Route path="/recipe"
+          element={<Recipe
+            data={data}
+            setData={setData}
+            ind={ind}
+            setInd={setInd}
+          />}
+        />
+        <Route path="/editrecipe"
+          element={<EditRecipe
+            data={data}
+            setData={setData}
+            ind={ind}
+            setInd={setInd}
+          />}
+        />
+      </Routes>
     </div>
   );
 }

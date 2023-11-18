@@ -1,0 +1,13 @@
+.my-rec-container{
+    margin-bottom: 10%;
+}
+.my-btns{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width: 820px){
+    .my-rec-container{
+        margin-bottom: 50%;
+    }
+}
