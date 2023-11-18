@@ -24,7 +24,7 @@
     margin:30px 0;
     display: flex;
     justify-content: center;
-    height:350px;
+    height:450px;
     flex-wrap: wrap;
 }
 .card{
@@ -89,3 +89,23 @@
         margin-bottom: 45%;
     }
 }
+::-webkit-scrollbar {
+    width: 13px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d65b14; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c74e08; 
+  }

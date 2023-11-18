@@ -1,4 +1,5 @@
 .App {
+  overflow: hidden;
   text-align: center;
   background-image: url("https://img.freepik.com/premium-photo/gadget-mockup-blank-text-space-white-background-with-spices-oil-board-salt-nut-food-blog-recipe-cookbook-delivery-app-with-cooking-ingredient_114106-2033.jpg?w=2000");
   background-repeat: no-repeat;

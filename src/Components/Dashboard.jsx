@@ -37,8 +37,17 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
      setRecipe(data.data);
      setValue(recipe.rating);
      setData(data.data);
-     ;
-      }
+    //  let temp=[];
+    //  let temprec=[];
+    //  for(let i=0; i<data.data.length; i++){
+    //   if(!temp.includes(data.data[i].type)){
+    //     temp.push(data.data[i].type);
+    //     temprec.push([]);
+    //   }
+    //   temprec[temp.indexOf(data.data[i].type)].push(data.data[i])
+    //  }
+    //  console.log("data",temp,temprec);
+    }
     fetchAllData()
     
     }, [])
@@ -136,12 +145,18 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
                         handleRating({newValue:newValue,id:foo._id});
                       }}
                     />
+                    <Button variant='contained'
+                    onClick={()=>handleFavourite({id:foo._id})}
+                    >Add to Favourites</Button>
                   </div>
                 </div>
                   </div>
               )):
               recipe.map((foo,index)=>(
-                foo.recipename.toLowerCase().includes(finder.toLocaleLowerCase())?
+                foo.recipename.toLowerCase().includes(finder.toLocaleLowerCase())
+                ||foo.type.toLowerCase().includes(finder.toLocaleLowerCase())
+                ||foo.tags.includes(finder.toLocaleLowerCase())
+                ?
                 (<div key={index} className='cards col-md-3' >
                 <div class="card">
                 <img src={foo.image} class="card-img-top" alt="..."

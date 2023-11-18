@@ -33,7 +33,6 @@
     display: flex;
 }
 .contents{
-    overflow: hidden;
     height:100vh;
     overflow: auto;
 }
