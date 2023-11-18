@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 
+
 const Base = ({children}) => {
     const navigate = useNavigate()
     //Logout function
@@ -137,6 +138,7 @@ const Base = ({children}) => {
                 {children}
             </div>
         </main>
+        
     </div>
   )
 }

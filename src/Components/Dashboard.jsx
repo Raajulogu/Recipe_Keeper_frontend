@@ -5,6 +5,7 @@ import {  Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
     let [recipe, setRecipe] = useState([]);
@@ -183,6 +184,9 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
         </div>
             }
           </div>
+          <div className='copyright'>
+          <p><CopyrightIcon/> 2023 Rajeshkumar all rights reserved</p>
+        </div>
         </div>
     </Base>
   )
