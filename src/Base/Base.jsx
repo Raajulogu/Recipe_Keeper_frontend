@@ -102,15 +102,6 @@ const Base = ({children}) => {
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton onClick={()=>handleLogut()}>
-                  <ListItemIcon>
-                    <LogoutIcon/>
-                  </ListItemIcon>
-                  <ListItemText primary="Logout"/>
-                </ListItemButton>
-              </ListItem>
-
-              <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
                     <DarkModeIcon/>
@@ -129,6 +120,15 @@ const Base = ({children}) => {
                       />
                     }
                   />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton onClick={()=>handleLogut()}>
+                  <ListItemIcon>
+                    <LogoutIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary="Logout"/>
                 </ListItemButton>
               </ListItem>
           </List>
