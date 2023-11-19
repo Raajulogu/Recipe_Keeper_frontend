@@ -152,7 +152,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
             <div class="cards-container cards-container-1 row">
             {finder.length<=0?
               rectitle.map((foo,index)=>(
-                  <div key={index} className='data-box col'>
+                  <div key={index} className='data-box'>
                     <div className='type-name'> 
                       <h1 className='type'><u>{foo[0].toUpperCase()+foo.slice(1)}</u></h1>
                     </div>
