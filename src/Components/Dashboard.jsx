@@ -162,7 +162,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
                       <Cards
                         key={index+fooind}
                         food={food}
-                        foodind={fooind}
+                        fooind={fooind}
                         ind={ind}
                         setInd={setInd}
                       />
@@ -268,8 +268,8 @@ const Cards = ({food,fooind,ind,setInd}) => {
   }
   }
   //handle Recipe
-  async function handleRecipe(index){
-    setInd(index);
+  async function handleRecipe({fooind}){
+    setInd(fooind);
     navigate('/recipe')
   }
 
@@ -298,7 +298,7 @@ const Cards = ({food,fooind,ind,setInd}) => {
       <div key={fooind} className='cards col-md-3' >
                   <div class="card">
                   <img src={food.image} class="card-img-top" alt="..."
-                  onClick={()=>handleRecipe(fooind)}
+                  onClick={()=>handleRecipe({fooind})}
                   />
                   <div class="card-body">
                     <h5 class="card-title"><h4>{food.recipename}</h4></h5>

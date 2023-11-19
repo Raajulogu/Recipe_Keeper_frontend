@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Recipe.css";
 import Base from '../Base/Base';
-import { Button, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -15,8 +15,6 @@ const Recipe = ({data,setData,ind,setInd}) => {
     //Function for handle comment
     async function handleComment(){
         let token = localStorage.getItem('token');
-        
-        console.log(data.rating);
         let res=await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/comment/${data[ind]._id}`,{
         method:"PUT",
         body:JSON.stringify({comment}),
@@ -32,7 +30,23 @@ const Recipe = ({data,setData,ind,setInd}) => {
       else{
         setComment("")
       }
+      handleClick()
       }
+
+      //Snackbar
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <Base>
         <div className='recipe-container'>
@@ -95,6 +109,13 @@ const Recipe = ({data,setData,ind,setInd}) => {
                     </div>
                 )):<p className='comment-box'>No comments</p>}
             </div>
+            <Snackbar open={open} autoHideDuration={4000} 
+                  onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="success" 
+                  sx={{ width: '100%' }}>
+                    Comment posted Successfully
+                  </Alert>
+                </Snackbar>
         </div>
     </Base>
   )
