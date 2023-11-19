@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Base.css";
 import { Box, Button, Drawer, FormControlLabel, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -15,10 +15,15 @@ const Base = ({children}) => {
     const navigate = useNavigate();
     let [bodyColor,setBodyColor]=useState("rgb(248, 243, 230)");
     let [headColor,setHeadColor]=useState("white");
-    let [searchColor,setSearchColor]=useState("black");
     let [fontColor,setFontColor]=useState("black");
-    let [theme, setTheme] = useState(true);
+    let [theme, setTheme] = useState(false);
 
+    useEffect(()=>{
+      handleColor()
+    }, [theme])
+    useEffect(()=>{
+      handleColor()
+    }, [])
     //Logout function
     function handleLogut(){
         localStorage.removeItem("token")
@@ -41,20 +46,19 @@ const Base = ({children}) => {
       
       //Handle colors
       async function handleColor(){
-        setTheme(!theme)
-        if(theme===false){
+        if(theme===true){
             setBodyColor("rgb(59, 58, 58)");
             setHeadColor("black");
-            setSearchColor('white');
             setFontColor("white");
         }
         else{
             setBodyColor("rgb(248, 243, 230)");
             setHeadColor("white");
-            setSearchColor('black');
             setFontColor("black");
         }
-        console.log(bodyColor,headColor,searchColor,fontColor)
+      }
+      async function handlecolorClick(){
+        setTheme(!theme)
       }
       const list = (anchor) => (
         <Box
@@ -114,7 +118,7 @@ const Base = ({children}) => {
                     control={
                       <Switch
                         checked={theme}
-                        onChange={() => handleColor()}
+                        onChange={() => handlecolorClick()}
                         name="theme"
                         color="primary"
                       />
