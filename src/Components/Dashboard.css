@@ -17,10 +17,34 @@
     width:35vw;
 }
 .cards-container{
+    width:100vw;
     justify-content: space-around;
     min-height: 100vh;
+    flex-direction: column;
+}
+.sorted-card-container{
+    width:100vw;
+    justify-content: space-around;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.data-box{
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+}
+.type-name{
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10vw;
+}
+.rec-cards{
+    display: flex;
 }
 .cards{
+    width:100vw;
     margin:30px 0;
     display: flex;
     justify-content: center;
@@ -32,7 +56,6 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    width:50%;
     transition: .3s ;
 }
 .card:hover{
@@ -46,13 +69,38 @@
     margin-top: 15vh;
     width:100%;
 }
-@media only screen and (max-width: 820px){
+@media only screen and (max-width: 400px){
+    .rec-cards{
+        flex-direction: column;
+        align-items: center;
+    }
+    .cards{
+        margin-bottom: 45%;
+    }
+}
+@media (min-width: 401px) and (max-width: 594px){
+    .search-field{
+        width:80%;
+    }
+    .rec-cards{
+        flex-direction: column;
+        align-items: center;
+    }
+    .card{
+        width:50vw;
+    }
+}
+@media (min-width: 595px) and (max-width: 767px){
     .search-field{
         width:80%;
     }
     #title-pic{
         margin-top: 3%;
         width:80vw;
+    }
+    .rec-cards{
+        flex-direction: column;
+        align-items: center;
     }
     .cards{
         margin:15% 0;
@@ -61,35 +109,31 @@
         margin-bottom: 25%;
     }
     .card{
-        width:0%;
+        width:40vw;
+        height:500px;
     }
 }
-@media only screen and (min-width: 768px){
+@media (min-width: 768px) and (max-width: 1299px){
+    .rec-cards{
+        flex-direction: column;
+        align-items: center;
+    }
     .card{
-        width:50vw;
+        width:70vw;
+        height:500px;
     }
     .home-container{
         margin-bottom: 45vh;
     }
 }
-@media only screen and (min-width: 1300px){
+@media (min-width: 1300px) and (max-width: 1549px){
     .card{
         width:20vw;
     }
 }
-@media only screen and (min-width: 1550px){
+@media (min-width: 1550px){
     .card{
         width:50%;
-    }
-}
-@media only screen and (max-width: 768px){
-    .card{
-        width:50vw;
-    }
-}
-@media only screen and (max-width: 400px){
-    .cards{
-        margin-bottom: 45%;
     }
 }
 ::-webkit-scrollbar {
