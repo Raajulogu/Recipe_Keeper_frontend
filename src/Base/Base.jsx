@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Base.css";
-import { Box, Button, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
+import { Box, Button, Drawer, FormControlLabel, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -8,10 +8,17 @@ import GradeIcon from '@mui/icons-material/Grade';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
 const Base = ({children}) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    let [bodyColor,setBodyColor]=useState("rgb(248, 243, 230)");
+    let [headColor,setHeadColor]=useState("white");
+    let [searchColor,setSearchColor]=useState("black");
+    let [fontColor,setFontColor]=useState("black");
+    let [theme, setTheme] = useState(true);
+
     //Logout function
     function handleLogut(){
         localStorage.removeItem("token")
@@ -31,13 +38,31 @@ const Base = ({children}) => {
     
         setState({ ...state, [anchor]: open });
       };
-    
+      
+      //Handle colors
+      async function handleColor(){
+        setTheme(!theme)
+        if(theme===false){
+            setBodyColor("rgb(59, 58, 58)");
+            setHeadColor("black");
+            setSearchColor('white');
+            setFontColor("whitesmoke");
+        }
+        else{
+            setBodyColor("rgb(248, 243, 230)");
+            setHeadColor("white");
+            setSearchColor('black');
+            setFontColor("black");
+        }
+        console.log(bodyColor,headColor,searchColor,fontColor)
+      }
       const list = (anchor) => (
         <Box
-          sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+          sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,height:"100%" }}
           role="presentation"
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
+          style={{ backgroundColor: `${bodyColor}`, color:`${fontColor}` }}
         >
           <List>
               <ListItem disablePadding>
@@ -48,6 +73,7 @@ const Base = ({children}) => {
                   <ListItemText primary="Home"/>
                 </ListItemButton>
               </ListItem>
+
               <ListItem disablePadding>
                 <ListItemButton onClick={()=>navigate("/my-recipe")}>
                   <ListItemIcon>
@@ -56,6 +82,7 @@ const Base = ({children}) => {
                   <ListItemText primary="My Recipes"/>
                 </ListItemButton>
               </ListItem>
+
               <ListItem disablePadding>
                 <ListItemButton onClick={()=>navigate("/favourites")}>
                   <ListItemIcon>
@@ -64,6 +91,7 @@ const Base = ({children}) => {
                   <ListItemText primary="Favourites"/>
                 </ListItemButton>
               </ListItem>
+
               <ListItem disablePadding>
                 <ListItemButton onClick={()=>navigate("/addrecipe")}>
                   <ListItemIcon>
@@ -72,6 +100,7 @@ const Base = ({children}) => {
                   <ListItemText primary="Post Recipe"/>
                 </ListItemButton>
               </ListItem>
+
               <ListItem disablePadding>
                 <ListItemButton onClick={()=>handleLogut()}>
                   <ListItemIcon>
@@ -80,12 +109,37 @@ const Base = ({children}) => {
                   <ListItemText primary="Logout"/>
                 </ListItemButton>
               </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DarkModeIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary="Dark theme"/>
+                  <FormControlLabel
+                    sx={{
+                      display: 'block',
+                    }}
+                    control={
+                      <Switch
+                        checked={theme}
+                        onChange={() => handleColor()}
+                        name="theme"
+                        color="primary"
+                      />
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
           </List>
         </Box>
       );
   return (
-    <div className='container-fluid main-head'> 
-        <header className='nav-container row'>
+    <div className='container-fluid main-head'
+      style={{ backgroundColor: `${bodyColor}`, color:`${fontColor}` }}> 
+        <header className='nav-container row'
+        style={{ backgroundColor: `${headColor}`}}
+        >
             <nav>
                 <div className='nav-box'>
                   <div className='image-container'>

@@ -91,6 +91,7 @@
     }
     .card{
         width:50vw;
+        height:480px;
     }
 }
 @media (min-width: 595px) and (max-width: 767px){
@@ -113,7 +114,7 @@
     }
     .card{
         width:40vw;
-        height:500px;
+        height:450px;
     }
 }
 @media (min-width: 768px) and (max-width: 1299px){
@@ -123,7 +124,7 @@
     }
     .card{
         width:70vw;
-        height:500px;
+        height:450px;
     }
     .home-container{
         margin-bottom: 45vh;
