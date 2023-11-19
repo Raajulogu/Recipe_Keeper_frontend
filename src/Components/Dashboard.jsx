@@ -6,6 +6,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
     let [recipe, setRecipe] = useState([]);
@@ -76,6 +83,20 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
       setInd(index);
       navigate('/recipe')
     }
+     //Snackbar
+     const [open, setOpen] = useState(false);
+
+     const handleClick = () => {
+       setOpen(true);
+     };
+ 
+     const handleClose = (event, reason) => {
+       if (reason === 'clickaway') {
+         return;
+       }
+ 
+       setOpen(false);
+     };
 
     //handle favourites
     async function handleFavourite({id}){
@@ -93,10 +114,15 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
         }
       });
       val=await res.json();
+      handleClick()
       if(!val.data) {
       setError(val.message)
+      }
+      
     }
-    }
+
+   
+
   return ( 
     <Base>
         <div className='home-container'>
@@ -123,7 +149,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
           </div>
           <div>
           {recipe &&
-            <div class="cards-container row">
+            <div class="cards-container cards-container-1 row">
             {finder.length<=0?
               rectitle.map((foo,index)=>(
                   <div key={index} className='data-box col'>
@@ -182,6 +208,13 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
           <div className='copyright'>
           <p><CopyrightIcon/> 2023 Rajeshkumar all rights reserved</p>
         </div>
+        <Snackbar open={open} autoHideDuration={4000} 
+            onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" 
+            sx={{ width: '100%' }}>
+              Recipe added to Favourites
+            </Alert>
+          </Snackbar>
         </div>
     </Base>
   )
@@ -197,13 +230,27 @@ const Cards = ({food,fooind,ind,setInd}) => {
   let [tokenId, setTokenId]= useState("");
   let navigate = useNavigate();
 
+  //Snackbar
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   //Function for handle ratings
   async function handleRating({newValue,id}){
     let data={
       rating:newValue,
       id:id
     }
-    
     let res=await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/ratings`,{
     method:"PUT",
     body:JSON.stringify({data}),
@@ -241,6 +288,7 @@ const Cards = ({food,fooind,ind,setInd}) => {
         "x-auth":tokenId
       }
     });
+    handleClick();
     val=await res.json();
     if(!val.data) {
       setError(val.message)
@@ -267,7 +315,14 @@ const Cards = ({food,fooind,ind,setInd}) => {
                     >Add to Favourites</Button>
                   </div>
                 </div>
-                  </div>
+                <Snackbar open={open} autoHideDuration={4000} 
+                  onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="success" 
+                  sx={{ width: '100%' }}>
+                    Recipe added to Favourites
+                  </Alert>
+                </Snackbar>
+        </div>
   )
 }
 

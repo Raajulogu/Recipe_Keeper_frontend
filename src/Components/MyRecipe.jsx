@@ -90,7 +90,7 @@ const MyRecipe = ({data,setData,ind,setInd}) => {
                   <br/>
                   <Rating
                     name="simple-controlled"
-                    value={value}
+                    value={foo.rating[0]}
                     onChange={(event, newValue) => {
                       handleRating({newValue:newValue,id:foo._id});
                     }}

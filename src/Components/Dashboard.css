@@ -20,6 +20,9 @@
     width:100vw;
     justify-content: space-around;
     min-height: 100vh;
+    
+}
+.cards-container-1{
     flex-direction: column;
 }
 .sorted-card-container{
