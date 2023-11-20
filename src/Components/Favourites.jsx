@@ -8,6 +8,7 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
   let [value, setValue] =  useState(0);
   let [error, setError] = useState("");
   let [recipes,setRecipes] = useState([]);
+  let [fontColor,setFontColor]=useState("black");
 
   //Getting data
   useEffect(()=>{
@@ -40,6 +41,12 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
       }
       }
     fetchAllData()
+    if(theme===true){
+      setFontColor("white");
+    }
+    else{
+        setFontColor("black");
+    }
     
     }, [])
 
@@ -78,7 +85,9 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
     setTheme={setTheme}
     >
         <div className='my-rec-container'>
-          <div>
+          <div
+          style={{ color:`${fontColor}` }}
+          >
           <h2>Your Favourites</h2>
           </div>
         <div>

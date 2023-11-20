@@ -6,7 +6,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import CopyrightIcon from '@mui/icons-material/Copyright';
-import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -15,13 +14,13 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) => {
-    let [recipe, setRecipe] = useState([]);
     let [error, setError] = useState("");
     let [tokenId, setTokenId]= useState("");
     let [finder,setFinder]=useState("");
     let [value, setValue] =  useState(0);
     let [rectitle,setRectitle]=useState([]);
     let [recContent,setRecContent]=useState([]);
+    let [fontColor,setFontColor]=useState("black");
     let navigate = useNavigate();
     
     
@@ -45,13 +44,17 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
         setError(data.message);
         
      }
-     setRecipe(data.data.data);
      setData(data.data.data);  
      setRectitle(data.data.temp)
      setRecContent(data.data.temprec)
     }
     fetchAllData()
-    
+    if(theme===true){
+      setFontColor("white");
+    }
+    else{
+        setFontColor("black");
+    }
   
     }, [])
 
@@ -151,13 +154,15 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
             id='title-pic' alt=""/>
           </div>
           <div>
-          {recipe &&
+          {rectitle &&
             <div class="cards-container cards-container-1 row">
             {finder.length<=0?
               rectitle.map((foo,index)=>(
                   <div key={index} className='data-box'>
                     <div className='type-name'> 
-                      <h1 className='type'><u>{foo[0].toUpperCase()+foo.slice(1)}</u></h1>
+                      <h1 className='type'
+                      style={{ color:`${fontColor}` }}
+                      ><u>{foo[0].toUpperCase()+foo.slice(1)}</u></h1>
                     </div>
                     <br/>
                     <div className='rec-cards'>
@@ -175,7 +180,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
               )):
               <div className='sorted-card-container'>
                 {
-                  recipe.map((foo,index)=>(
+                  data.map((foo,index)=>(
                     foo.recipename.toLowerCase().includes(finder.toLocaleLowerCase())
                     ||foo.type.toLowerCase().includes(finder.toLocaleLowerCase())
                     ||foo.tags.join(" ").toLowerCase().includes(finder.toLocaleLowerCase())

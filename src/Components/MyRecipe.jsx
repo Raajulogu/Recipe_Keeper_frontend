@@ -9,6 +9,7 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
   let [rec,setRec]=useState([]);
   let [value, setValue] =  useState(0);
   let [error, setError] = useState("");
+  let [fontColor,setFontColor]=useState("black");
 
   useEffect(()=>{
     let email=localStorage.getItem('email');
@@ -19,7 +20,12 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
       }
     }
     setRec(val);
-    console.log(rec);
+    if(theme===true){
+      setFontColor("white");
+    }
+    else{
+        setFontColor("black");
+    }
 
   }, []);
   //Handle Rating
@@ -76,7 +82,9 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     setTheme={setTheme}
     >
         <div className='my-rec-container'>
-        <div>
+        <div
+        style={{ color:`${fontColor}` }}
+        >
           <h2>Your Recipes</h2>
           </div>
         <div>

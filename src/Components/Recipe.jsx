@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import "./Recipe.css";
 import Base from '../Base/Base';
 import { Alert, Button, IconButton, InputAdornment, Snackbar, TextField, Typography } from '@mui/material';
@@ -10,8 +10,20 @@ import { useNavigate } from 'react-router-dom';
 const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     let [comment,setComment]=useState('');
     let [error, setError] = useState("");
+    let [fontColor,setFontColor]=useState("black");
     let navigate=useNavigate()
 
+
+    useEffect(()=>{
+      
+      if(theme===true){
+        setFontColor("white");
+      }
+      else{
+          setFontColor("black");
+      }
+    
+      }, [])
     //Function for handle comment
     async function handleComment(){
         let token = localStorage.getItem('token');
@@ -52,7 +64,9 @@ const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     theme={theme}
     setTheme={setTheme}
     >
-        <div className='recipe-container'>
+        <div className='recipe-container'
+        style={{ color:`${fontColor}` }}
+        >
             <div className='back-arrow'
             onClick={()=>navigate("/")}
             >

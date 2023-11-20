@@ -16,7 +16,7 @@ const AddRecipe = ({theme,setTheme}) => {
     let [type, setType] = useState("");
     let [tag, setTag] = useState("");
     let [error, setError] = useState("");
-    let email=localStorage.getItem('email')
+    let email=localStorage.getItem('email');
 
     const [sucessMsg, setSucessMessage] = useState("")
     let token=localStorage.getItem("token")
