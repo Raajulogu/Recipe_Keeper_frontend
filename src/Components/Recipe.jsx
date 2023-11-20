@@ -24,6 +24,15 @@ const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
       }
     
       }, [])
+
+      useEffect(()=>{
+        if(theme===true){
+          setFontColor("white");
+        }
+        else{
+            setFontColor("black");
+        }
+      }, [theme])
     //Function for handle comment
     async function handleComment(){
         let token = localStorage.getItem('token');
@@ -84,7 +93,9 @@ const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
             <h4>Cooking Time:</h4>
             <p>{data[ind].cookingtime} minutes</p>
             <h4>Ingredients:</h4>
-            <ul>
+            <ul
+            className='ingrediants-list'
+            >
             {data[ind].ingredients.length && data[ind].ingredients.map((rec,index)=>(
                 <li key={index}>{rec}</li>
             ))}

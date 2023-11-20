@@ -47,8 +47,17 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
     else{
         setFontColor("black");
     }
-    
+  
     }, [])
+
+    useEffect(()=>{
+      if(theme===true){
+        setFontColor("white");
+      }
+      else{
+          setFontColor("black");
+      }
+    }, [theme])
 
   
   //Handle Rating

@@ -28,6 +28,16 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     }
 
   }, []);
+
+  useEffect(()=>{
+    if(theme===true){
+      setFontColor("white");
+    }
+    else{
+        setFontColor("black");
+    }
+  }, [theme])
+  
   //Handle Rating
   async function handleRating({newValue,id}){
     let token = localStorage.getItem('token');

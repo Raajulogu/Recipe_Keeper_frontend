@@ -57,6 +57,14 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
     }
   
     }, [])
+    useEffect(()=>{
+      if(theme===true){
+        setFontColor("white");
+      }
+      else{
+          setFontColor("black");
+      }
+    }, [theme])
 
     //Function for handle ratings
     async function handleRating({newValue,id}){

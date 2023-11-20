@@ -20,9 +20,6 @@ const Base = ({children,theme,setTheme}) => {
     useEffect(()=>{
       handleColor()
     }, [theme])
-    useEffect(()=>{
-      handleColor()
-    }, [])
     //Logout function
     function handleLogut(){
         localStorage.removeItem("token")
