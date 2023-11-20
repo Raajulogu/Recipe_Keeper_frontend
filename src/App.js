@@ -18,6 +18,7 @@ function App() {
   let [data, setData] = useState([]);
   let [ind,setInd]=useState(0);
   let [recipes,setRecipes] = useState([]);
+  let [theme, setTheme] = useState(false);
   return (
     <div className="App">
       <Routes>
@@ -29,6 +30,8 @@ function App() {
           setInd={setInd}
           recipes={recipes}
           setRecipes={setRecipes}
+          theme={theme}
+          setTheme={setTheme}
           />}
         />
         <Route path="/signup"
@@ -52,6 +55,8 @@ function App() {
             setData={setData}
             ind={ind}
             setInd={setInd}
+            theme={theme}
+            setTheme={setTheme}
           />}
         />
         <Route path="/favourites"
@@ -62,10 +67,15 @@ function App() {
             setInd={setInd}
             recipes={recipes}
             setRecipes={setRecipes}
+            theme={theme}
+            setTheme={setTheme}
           />}
         />
         <Route path="/addrecipe"
-          element={<AddRecipe/>}
+          element={<AddRecipe
+            theme={theme}
+            setTheme={setTheme}
+          />}
         />
         <Route path="/recipe"
           element={<Recipe
@@ -73,6 +83,8 @@ function App() {
             setData={setData}
             ind={ind}
             setInd={setInd}
+            theme={theme}
+            setTheme={setTheme}
           />}
         />
         <Route path="/editrecipe"
@@ -81,6 +93,8 @@ function App() {
             setData={setData}
             ind={ind}
             setInd={setInd}
+            theme={theme}
+            setTheme={setTheme}
           />}
         />
       </Routes>

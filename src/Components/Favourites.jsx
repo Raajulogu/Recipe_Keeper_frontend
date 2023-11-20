@@ -3,7 +3,7 @@ import Base from '../Base/Base'
 import { useNavigate } from 'react-router-dom';
 import { Rating } from '@mui/material';
 
-const Favourites = ({data,setData,ind,setInd}) => {
+const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
   let navigate = useNavigate();
   let [value, setValue] =  useState(0);
   let [error, setError] = useState("");
@@ -73,7 +73,10 @@ const Favourites = ({data,setData,ind,setInd}) => {
     navigate('/recipe')
   }
   return (
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='my-rec-container'>
           <div>
           <h2>Your Favourites</h2>

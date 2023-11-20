@@ -11,12 +11,11 @@ import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
-const Base = ({children}) => {
+const Base = ({children,theme,setTheme}) => {
     const navigate = useNavigate();
     let [bodyColor,setBodyColor]=useState("rgb(248, 243, 230)");
     let [headColor,setHeadColor]=useState("white");
     let [fontColor,setFontColor]=useState("black");
-    let [theme, setTheme] = useState(false);
 
     useEffect(()=>{
       handleColor()

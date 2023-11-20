@@ -7,7 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 
-const Recipe = ({data,setData,ind,setInd}) => {
+const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     let [comment,setComment]=useState('');
     let [error, setError] = useState("");
     let navigate=useNavigate()
@@ -48,7 +48,10 @@ const Recipe = ({data,setData,ind,setInd}) => {
     setOpen(false);
   };
   return (
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='recipe-container'>
             <div className='back-arrow'
             onClick={()=>navigate("/")}

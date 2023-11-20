@@ -14,7 +14,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
+const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) => {
     let [recipe, setRecipe] = useState([]);
     let [error, setError] = useState("");
     let [tokenId, setTokenId]= useState("");
@@ -124,7 +124,10 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes}) => {
    
 
   return ( 
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='home-container'>
           <div className='search-container'>
             <TextField

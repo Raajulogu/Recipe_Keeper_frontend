@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import "./AddRecipe.css"
 
-const AddRecipe = () => {
+const AddRecipe = ({theme,setTheme}) => {
 
     let navigate = useNavigate();
     let [title,setTitle]=useState("");
@@ -58,7 +58,10 @@ const AddRecipe = () => {
        
     }
   return (
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='input-container row'>
         <div className='back-arrow'
             onClick={()=>navigate("/")}

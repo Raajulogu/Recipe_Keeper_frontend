@@ -5,7 +5,7 @@ import Base from '../Base/Base';
 import { Button, IconButton, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const EditRecipe = ({data,setData,ind,setInd}) => {
+const EditRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     let navigate = useNavigate();
     let [title,setTitle]=useState(data[ind].recipename);
     let [ingredients,setIngredients]=useState(data[ind].ingredients.join(","));
@@ -57,7 +57,10 @@ const EditRecipe = ({data,setData,ind,setInd}) => {
        
     }
   return (
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='input-container row'>
         <div className='back-arrow'
             onClick={()=>navigate("/")}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Rating } from '@mui/material';
 import './MyRecipe.css';
 
-const MyRecipe = ({data,setData,ind,setInd}) => {
+const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
   let navigate = useNavigate();
   let [rec,setRec]=useState([]);
   let [value, setValue] =  useState(0);
@@ -71,7 +71,10 @@ const MyRecipe = ({data,setData,ind,setInd}) => {
   }
 
   return (
-    <Base>
+    <Base 
+    theme={theme}
+    setTheme={setTheme}
+    >
         <div className='my-rec-container'>
         <div>
           <h2>Your Recipes</h2>
