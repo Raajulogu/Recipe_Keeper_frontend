@@ -1,6 +1,16 @@
 .main-head{
     overflow: hidden;
 }
+.hide{
+    display: none;
+}
+.show{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
 .nav-container{
     box-shadow: 2px 2px 5px 2px rgb(129, 127, 127);
     top:0;
