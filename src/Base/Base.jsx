@@ -23,6 +23,7 @@ const Base = ({children,theme,setTheme}) => {
     //Logout function
     function handleLogut(){
         localStorage.removeItem("token")
+        localStorage.removeItem("email")
         navigate("/")
     };
     const [state, setState] = React.useState({

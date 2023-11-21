@@ -16,7 +16,9 @@ const EditRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     let [tag, setTag] = useState(data[ind].tags.join(","));
     let [error, setError] = useState("");
     let email=localStorage.getItem('email')
-
+    if(!localStorage.getItem("token")){
+      navigate("/login", {replace:true})
+    }
     const [sucessMsg, setSucessMessage] = useState("")
     let token=localStorage.getItem("token")
     

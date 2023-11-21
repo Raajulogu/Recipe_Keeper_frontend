@@ -7,10 +7,11 @@ import './MyRecipe.css';
 const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
   let navigate = useNavigate();
   let [rec,setRec]=useState([]);
-  let [value, setValue] =  useState(0);
   let [error, setError] = useState("");
   let [fontColor,setFontColor]=useState("black");
-
+  if(!localStorage.getItem("token")){
+    navigate("/login", {replace:true})
+  }
   useEffect(()=>{
     let email=localStorage.getItem('email');
     let val=[];
@@ -57,9 +58,6 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
   let val = await res.json()
   if(!val.data) {
       setError(val.message)
-  }
-  else{
-    setValue(val.data.rating);
   }
   }
   //handle Recipe

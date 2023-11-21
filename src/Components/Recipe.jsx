@@ -13,9 +13,10 @@ const Recipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     let [fontColor,setFontColor]=useState("black");
     let navigate=useNavigate()
 
-
+    if(!localStorage.getItem("token")){
+      navigate("/login", {replace:true})
+    }
     useEffect(()=>{
-      
       if(theme===true){
         setFontColor("white");
       }

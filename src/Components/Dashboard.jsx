@@ -24,12 +24,11 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
     let navigate = useNavigate();
     
     
-
+    if(!localStorage.getItem("token")){
+      navigate("/login", {replace:true})
+  }
   //Getting data
   useEffect(()=>{
-    if(!localStorage.getItem("token")){
-        navigate("/login", {replace:true})
-    }
     let token = localStorage.getItem("token")
     setTokenId(token)
     const fetchAllData = async()=>{

@@ -9,9 +9,7 @@ import AddRecipe from './Components/AddRecipe';
 import Recipe from './Components/Recipe';
 import { useState } from 'react';
 import EditRecipe from './Components/EditRecipe';
-import Forgot from './Components/forgot';
-import Reset from './Components/reset';
-import Otp from './Components/Otp';
+import ResetPassword from './Components/ResetPassword';
 
 function App() {
 
@@ -43,13 +41,7 @@ function App() {
           element={<Login/>}
         />
         <Route path="/reset"
-          element={<Reset/>}
-        />
-        <Route path="/forgot"
-          element={<Forgot/>}
-        />
-        <Route path="/otp"
-          element={<Otp/>}
+          element={<ResetPassword/>}
         />
         <Route path="/my-recipe"
           element={<MyRecipe

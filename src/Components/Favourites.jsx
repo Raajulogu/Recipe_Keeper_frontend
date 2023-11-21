@@ -9,12 +9,11 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
   let [error, setError] = useState("");
   let [recipes,setRecipes] = useState([]);
   let [fontColor,setFontColor]=useState("black");
-
+  if(!localStorage.getItem("token")){
+    navigate("/login", {replace:true})
+  }
   //Getting data
   useEffect(()=>{
-    if(!localStorage.getItem("token")){
-        navigate("/login", {replace:true})
-    }
     let email = localStorage.getItem("email")
     let token = localStorage.getItem("token");
     const fetchAllData = async()=>{
