@@ -199,7 +199,6 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
                     />
                     <div class="card-body">
                       <h5 class="card-title"><h4>{foo.recipename}</h4></h5>
-                      <br/>
                       <Rating
                           name="simple-controlled"
                           value={foo.rating[0]}
@@ -207,6 +206,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
                             handleRating({newValue,id:foo._id});
                           }}
                         />
+                        <br/>
                         <Button variant='contained'
                         onClick={()=>handleFavourite({id:foo._id})}
                         >Add to Favourites</Button>
