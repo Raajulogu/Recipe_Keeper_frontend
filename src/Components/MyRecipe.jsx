@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Base from '../Base/Base'
 import { useNavigate } from 'react-router-dom'
-import { Button, Rating } from '@mui/material';
+import { Alert, Button, Rating, Snackbar } from '@mui/material';
 import './MyRecipe.css';
 
 const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
@@ -29,6 +29,24 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
     }
 
   }, []);
+  //Run after Recipe Deleted
+  useEffect(()=>{
+    let email=localStorage.getItem('email');
+    let val=[];
+    for(var i=0;i<data.length;i++){
+      if(data[i].user===email){
+        val.push(data[i]);
+      }
+    }
+    setRec(val);
+    if(theme===true){
+      setFontColor("white");
+    }
+    else{
+        setFontColor("black");
+    }
+
+  }, [data]);
 
   useEffect(()=>{
     if(theme===true){
@@ -77,12 +95,28 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
         setData(remainingdata)
         
     }
+    handleClick()
   }
   //Handle Edit Recipe
   async function handleEditRecipe(index){
       setInd(index);
       navigate('/editrecipe')
   }
+
+  //Snackbar
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Base 
@@ -129,6 +163,13 @@ const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
           ` </div>:<p>No data found</p>
             }
           </div>
+          <Snackbar open={open} autoHideDuration={4000} 
+            onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" 
+            sx={{ width: '100%' }}>
+              Recipe Deleted Successfully
+            </Alert>
+          </Snackbar>
         </div>
     </Base>
   )
