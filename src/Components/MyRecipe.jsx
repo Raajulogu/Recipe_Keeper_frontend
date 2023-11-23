@@ -4,16 +4,32 @@ import { useNavigate } from 'react-router-dom'
 import { Alert, Button, Rating, Snackbar } from '@mui/material';
 import './MyRecipe.css';
 
-const MyRecipe = ({data,setData,ind,setInd,theme,setTheme}) => {
+const MyRecipe = ({ind,setInd,theme,setTheme}) => {
   let navigate = useNavigate();
   let [rec,setRec]=useState([]);
   let [error, setError] = useState("");
   let [fontColor,setFontColor]=useState("black");
+  let [data,setData] = useState([])
   if(!localStorage.getItem("token")){
     navigate("/login", {replace:true})
   }
   useEffect(()=>{
     let email=localStorage.getItem('email');
+
+   async function fetchAllData(){
+    let token = localStorage.getItem('token');
+    let res=await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/user-recipes`,{
+      method:"POST",
+      body:JSON.stringify({email}),
+      headers:{
+        "Content-Type":"application/json",
+        "x-auth":token
+      }
+    });
+    let value = await res.json()
+    setData(value.data);
+   }
+   fetchAllData();
     let val=[];
     for(var i=0;i<data.length;i++){
       if(data[i].user===email){

@@ -3,7 +3,8 @@ import Base from '../Base/Base'
 import { useNavigate } from 'react-router-dom';
 import { Rating } from '@mui/material';
 
-const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
+
+const Favourites = ({ind,setInd,theme,setTheme}) => {
   let navigate = useNavigate();
   let [value, setValue] =  useState(0);
   let [error, setError] = useState("");
@@ -17,6 +18,14 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
     let email = localStorage.getItem("email")
     let token = localStorage.getItem("token");
     const fetchAllData = async()=>{
+      const response = await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/get-all`, {
+        method:"GET",
+        headers:{
+            "x-auth" : token
+        }
+     });
+     const data = await response.json()
+      
       let res=await fetch(`https://recipe-keeper-backend.vercel.app/api/user/get-favourites`,{
         method:"PUT",
         body:JSON.stringify({email}),
@@ -26,14 +35,15 @@ const Favourites = ({data,setData,ind,setInd,theme,setTheme}) => {
         }
       });
      let val = await res.json()
+     
       if(!val.data) {
       setError(data.message);
       }
       else{
         let temp=[];
-        for(var i=0;i<data.length;i++){
-          if(val.data.includes(data[i]._id)){
-            temp.push(data[i])
+        for(var i=0;i<data.data.data.length;i++){
+          if(val.data.includes(data.data.data[i]._id)){
+            temp.push(data.data.data[i])
           }
         }
         setRecipes(temp);

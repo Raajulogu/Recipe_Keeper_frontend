@@ -32,7 +32,7 @@ const Dashboard = ({data,setData,ind,setInd,recipes,setRecipes,theme,setTheme}) 
     let token = localStorage.getItem("token")
     setTokenId(token)
     const fetchAllData = async()=>{
-     const res = await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/get-all`, {
+     const res = await fetch(`https://recipe-keeper-backend.vercel.app/api/recipe/get-all`,{
         method:"GET",
         headers:{
             "x-auth" : token

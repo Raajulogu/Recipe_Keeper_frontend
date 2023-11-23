@@ -20,7 +20,6 @@ const AddRecipe = ({theme,setTheme}) => {
     if(!localStorage.getItem("token")){
       navigate("/login", {replace:true})
     }
-    const [sucessMsg, setSucessMessage] = useState("")
     let token=localStorage.getItem("token")
     
     //Post a New Recipe in server
@@ -49,12 +48,10 @@ const AddRecipe = ({theme,setTheme}) => {
         const data = await res.json();
        if(!data.data){
           setError(data.message)
-          setSucessMessage("")
        }
        else{
         navigate("/")
        }
-       setSucessMessage(data.message)
         
         
        
