@@ -42,6 +42,7 @@ function Email({ value, setValue, user, setUser }) {
   let [error, setError] = useState("");
   let [encrypt, setEncrypt] = useState("");
   let [otp, setOtp] = useState("");
+  let [emailid,setEmailid]=useState("")
   let { handleChange, values, errors } = useFormik({
     initialValues: {
       email: "",
@@ -50,19 +51,20 @@ function Email({ value, setValue, user, setUser }) {
     onSubmit: (user) => {},
   });
   //Send OTP
-  function sendOtp(e) {
+  function sendOtp() {
     let msg = String(Math.floor(Math.random() * (9999 - 1000)));
     (function () {
       emailjs.init("NL09kZCZYeYFmZSgt"); //please encrypted user id for malicious attacks
     })();
 
     var templateParams = {
-      to_name: "rajeshkumarlogu145@gmail.com",
+      to_name: emailid,
       from_name: values.email,
       message_html: msg,
     };
+    console.log(emailid)
 
-    emailjs.send("service_5tm7opw", "template_ebkvuvq", templateParams).then(
+    emailjs.send("service_5tm7opw", "template_faklxvb", templateParams).then(
       function (response) {
         console.log("SUCCESS!", response.status, response.text);
       },
@@ -92,9 +94,9 @@ function Email({ value, setValue, user, setUser }) {
           <TextField
             name="email"
             type="email"
-            value={values.email}
+            value={emailid}
             label="Email"
-            onChange={handleChange}
+            onChange={(e)=>setEmailid(e.target.value)}
           />
           {errors.email ? (
             <div style={{ color: "crimson" }}>{errors.email}</div>
